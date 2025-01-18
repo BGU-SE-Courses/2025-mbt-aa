@@ -2,7 +2,7 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [Moodle](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [Moodle](https://moodle.org).
 
 Moodle is a learning platform designed to provide educators, administrators, and learners with a single robust, secure, and integrated system to create personalized learning environments. 
 
