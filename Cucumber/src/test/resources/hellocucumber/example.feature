@@ -18,4 +18,5 @@ Feature: Student subscribes to a forum discussion, Teacher deletes this discussi
     Examples:
       | username          | password         |
       | student           | Student123!      |
+      | teacher           | Teacher123!      |
 

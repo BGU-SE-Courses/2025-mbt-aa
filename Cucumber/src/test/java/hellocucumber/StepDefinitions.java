@@ -20,13 +20,15 @@ public class StepDefinitions {
 
     private static WebDriver driver;
     private static WebDriverWait wait;
+    private final int defaultSleepTime = 2000;
+    private final String MOODLE_URL = "http://localhost:8888/moodle405/";
 
     // $$*TODO* explain what this step does$$
     @Given("Student is on Home page")
     public void studentIsOnHomePage() {
         driver = new SafariDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-        driver.get("http://localhost:8888/moodle405/");
+        driver.get(MOODLE_URL);
     }
 
     @And("Student is logged in with {string} and {string}")
@@ -34,7 +36,7 @@ public class StepDefinitions {
         WebElement loginElement = driver.findElement(By.xpath("//*[@id=\"usernavigation\"]/div/div/span/a"));
         loginElement.click();
         try {
-            Thread.sleep(500);
+            Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -46,7 +48,7 @@ public class StepDefinitions {
     @And("Studnt has a course")
     public void studentHasACourse(){
         try {
-            Thread.sleep(2000);
+            Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -58,7 +60,7 @@ public class StepDefinitions {
     @And("Course has a forum discussion")
     public void CourseHasAForum(){
         try {
-            Thread.sleep(2000);
+            Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -69,7 +71,7 @@ public class StepDefinitions {
     @When("Student subscribes to a forum discussion")
     public void studentSubscribesToADiscussion() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -81,7 +83,7 @@ public class StepDefinitions {
     public void theScenarioPasses() {
         driver.findElement(By.xpath("//td[5]/div[1]"));
         try {
-            Thread.sleep(2000);
+            Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
