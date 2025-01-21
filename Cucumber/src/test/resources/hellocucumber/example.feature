@@ -7,16 +7,17 @@
 
 Feature: Student subscribes to a forum discussion, Teacher deletes this discussion
 
-  Scenario: Student subscribes to a forum discussion
+  Scenario Outline: Student subscribes to a forum discussion
     Given Student is on Home page
     And Student is logged in with "<username>" and "<password>"
-    And Studnt has a course
+    And Student is on courses page
+    And Student has a course
     And Course has a forum discussion
     When Student subscribes to a forum discussion
-    Then The student succcessfully subscribed to the discussion
+    Then The student successfully subscribed to the discussion
 
     Examples:
-      | username          | password         |
-      | student           | Student123!      |
-      | teacher           | Teacher123!      |
+      | username | password    |
+      | student  | Student123! |
+
 
