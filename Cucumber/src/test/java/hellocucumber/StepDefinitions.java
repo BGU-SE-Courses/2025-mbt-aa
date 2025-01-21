@@ -2,10 +2,9 @@ package hellocucumber;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.junit.jupiter.api.parallel.Execution;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
@@ -28,6 +27,7 @@ public class StepDefinitions {
 
     // $$*TODO* explain what this step does$$
     @Given("Student is on Home page")
+    @Given("Teacher is on Home page")
     public void studentIsOnHomePage() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\yossi\\OneDrive - post.bgu.ac.il\\selfStudy\\שולחן העבודה\\qa\\Selenium\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
@@ -39,6 +39,7 @@ public class StepDefinitions {
     }
 
     @And("Student is logged in with {string} and {string}")
+    @And("Teacher is logged in with {string} and {string}")
     public void studentIsLoggedIn(String username, String password){
         WebElement loginElement = driver.findElement(By.xpath("//*[@id=\"usernavigation\"]/div/div/span/a"));
         loginElement.click();
@@ -52,9 +53,10 @@ public class StepDefinitions {
         driver.findElement(By.xpath("//form[1]/div[3]/button[1]")).click();
     }
     @And("Student is on courses page")
+    @And("Teacher is on courses page")
     public void studentIsOnCoursesPage(){
         try {
-            Thread.sleep(7000);
+            Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -65,6 +67,7 @@ public class StepDefinitions {
     }
 
     @And("Student has a course")
+    @And("Teacher has a course")
     public void studentHasACourse(){
         try {
             Thread.sleep(defaultSleepTime);
@@ -104,6 +107,49 @@ public class StepDefinitions {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    // $$*TODO* explain what this step does$$
+    @And("Teacher in specific forum discussion page")
+    public void TeacherEnteringDiscussion() {
+        try {
+            Thread.sleep(defaultSleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("/html/body/div[3]/div[4]/div/div[3]/div/section/div[2]/div[2]/div[3]/div/table/tbody/tr/th/div/div[1]/a")).click();
+    }
+
+    // $$*TODO* explain what this step does$$
+    @When("Teacher deletes a forum discussion")
+    public void TeacherDeletesForumDiscussion() {
+        try {
+            Thread.sleep(defaultSleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("/html/body/div[2]/div[4]/div/div[3]/div/section/div[2]/div/article/div[1]/div/div/div[2]/div[2]/div/a[3]")).click();
+        try {
+            Thread.sleep(defaultSleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("/html/body/div[2]/div[4]/div/div[3]/div/section/div[2]/div/div/div[3]/div/div[2]/form/button")).click();
+    }
+
+    // $$*TODO* explain what this step does$$
+    @Then("The Teacher successfully deletes the discussion")
+    public void TeacherScenarioPasses() throws Exception {
+
+        try {
+            Thread.sleep(defaultSleepTime);
+            driver.findElement(By.xpath("/html/body/div[2]/div[4]/div/div[3]/div/section/div[2]/div/article/div[1]/div/div/div[2]/div[2]/div/a[3]"));
+            throw new Exception("deleted element was found");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        catch (NoSuchElementException e){}
+
+
     }
 
 }
