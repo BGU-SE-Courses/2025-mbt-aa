@@ -26,23 +26,24 @@ function enterToForumDiscussionAndSubscribe(session){
 function enterToForumDiscussionAndDeleteDiscussion(session){
   sync({request: Event("Start-enterToForumDiscussionAndDeleteDiscussion")})
   session.click(xpaths.teacherWindow.teacherForumButton)
-  session.click(xpaths.teacherWindow.deleteDiscussionFirstButton)
-  session.click(xpaths.teacherWindow.deleteDiscussionSeconedButton)
+  session.click(xpaths.teacherWindow.teacherEnterDiscussion)
+  session.click(xpaths.teacherWindow.teacherDeleteDiscussion)
+  session.click(xpaths.teacherWindow.teacherConfirmDelete)
   sync({request: Event("End-enterToForumDiscussionAndDeleteDiscussion")})
 }
 
 
-
+//
 // function composeQuery(session, data) {
 //   session.writeText(xpaths.searchWindow.searchInput, data.text)
 // }
-
+//
 // function startSearch(session) {
 //   with(session) {
 //     click(xpaths.searchWindow.searchButton)
 //   }
 // }
-
+//
 // function feelLucky(session) {
 //   with(session) {
 //     click(xpaths.searchWindow.feelingLuckyButton)

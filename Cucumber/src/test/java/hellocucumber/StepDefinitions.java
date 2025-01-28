@@ -28,7 +28,7 @@ public class StepDefinitions {
     // $$*TODO* explain what this step does$$
     @Given("Student is on Home page")
     @Given("Teacher is on Home page")
-    public void studentIsOnHomePage() {
+    public void userIsOnHomePage() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\yossi\\OneDrive - post.bgu.ac.il\\selfStudy\\שולחן העבודה\\qa\\Selenium\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -40,7 +40,7 @@ public class StepDefinitions {
 
     @And("Student is logged in with {string} and {string}")
     @And("Teacher is logged in with {string} and {string}")
-    public void studentIsLoggedIn(String username, String password){
+    public void userIsLoggedIn(String username, String password){
         WebElement loginElement = driver.findElement(By.xpath("//*[@id=\"usernavigation\"]/div/div/span/a"));
         loginElement.click();
         try {
@@ -54,7 +54,7 @@ public class StepDefinitions {
     }
     @And("Student is on courses page")
     @And("Teacher is on courses page")
-    public void studentIsOnCoursesPage(){
+    public void userIsOnCoursesPage(){
         try {
             Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
@@ -68,7 +68,7 @@ public class StepDefinitions {
 
     @And("Student has a course")
     @And("Teacher has a course")
-    public void studentHasACourse(){
+    public void userHasACourse(){
         try {
             Thread.sleep(defaultSleepTime);
         } catch (InterruptedException e) {
@@ -100,7 +100,7 @@ public class StepDefinitions {
 
     // $$*TODO* explain what this step does$$
     @Then("The student successfully subscribed to the discussion")
-    public void theScenarioPasses() {
+    public void successfulSubscribe() {
         driver.findElement(By.xpath("/html/body/div[3]/div[4]/div/div[2]/div/section/div[2]/div[2]/div[3]/div/table/tbody/tr/td[5]/div"));
         try {
             Thread.sleep(defaultSleepTime);
