@@ -1,4 +1,5 @@
 /* @provengo summon selenium */
+/* @provengo summon ctrl */
 
 function findLoginPageAndLogin(session, username, password){
   sync({request: Event("Start-findLoginPageAndLogin")})
