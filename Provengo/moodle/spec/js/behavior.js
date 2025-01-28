@@ -2,6 +2,12 @@
 /* @provengo summon ctrl */
 
 
+/**
+ * BThread: Student Subscribes to a Forum Discussion
+ * 
+ * This thread simulates a student logging in, navigating to a test course,
+ * and subscribing to a forum discussion.
+ */
 bthread("studentSubscribesToAForumDiscussion", function(){
   let session1 = new SeleniumSession('studentMoodleSession')
   session1.start(URL)
@@ -10,18 +16,30 @@ bthread("studentSubscribesToAForumDiscussion", function(){
   sync({request: Event("End-enterToForumDiscussionAndSubscribe")},enterToForumDiscussionAndSubscribe(session1))
 });
 
-
+/**
+ * BThread: Teacher Deletes a Forum Discussion
+ * 
+ * This thread simulates a teacher logging in, navigating to a test course,
+ * and deleting a forum discussion.
+ */
 bthread("teacherDeletesTheForumDiscussion", function(){
   let session2 = new SeleniumSession('teacherMoodleSession')
   session2.start(URL)
   sync({request: Event("End-findLoginPageAndLogin")}, findLoginPageAndLogin(session2, teacherUsername, teacherPassword))
   sync({request: Event("End-goToTestCourse")}, goToTestCourse(session2))
-  sync({request: Event("End-enterToForumDiscussionAndDeleteDiscussion")}, enterToForumDiscussionAndDeleteDiscussion(session2))
+  sync({request: Event("End-enterToForumDiscussion")}, enterToForumDiscussion(session2))
+  sync({request: Event("End-deleteDiscussion")}, deleteDiscussion(session2))
 });
 
-// this bthread assures that after the teacher deleted the discussion, the student cant subscribe to it
+
+/**
+ * BThread: Teacher Deletes the Discussion While Student Is Waiting
+ * 
+ * Ensures that the teacher deletes the discussion before the student can subscribe,
+ * simulating a race condition or concurrent interaction.
+ */
 bthread("teacherDeletesTheDiscussionWhileStudentIsWaiting", function(){
-  sync({waitFor:Event("End-enterToForumDiscussionAndDeleteDiscussion")})
+  sync({waitFor:Event("End-deleteDiscussion")})
   sync({block: Event("Start-enterToForumDiscussionAndSubscribe")})
 });
 
