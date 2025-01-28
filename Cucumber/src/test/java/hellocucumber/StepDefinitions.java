@@ -25,7 +25,7 @@ public class StepDefinitions {
     private final String MOODLE_URL = "http://localhost:8888/moodle405/";
     private final String MOODLE_URL_2 = "http://localhost/";
 
-    // $$*TODO* explain what this step does$$
+    // Entry point for the test, initialize driver and moodle home page
     @Given("Student is on Home page")
     @Given("Teacher is on Home page")
     public void userIsOnHomePage() {
@@ -37,7 +37,7 @@ public class StepDefinitions {
         wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         driver.get(MOODLE_URL_2);
     }
-
+    // log in the user to moodle
     @And("Student is logged in with {string} and {string}")
     @And("Teacher is logged in with {string} and {string}")
     public void userIsLoggedIn(String username, String password){
@@ -52,6 +52,7 @@ public class StepDefinitions {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[2]/div[1]/input[1]"))).sendKeys(password);
         driver.findElement(By.xpath("//form[1]/div[3]/button[1]")).click();
     }
+    // Entering the courses page on moodle
     @And("Student is on courses page")
     @And("Teacher is on courses page")
     public void userIsOnCoursesPage(){
@@ -60,12 +61,9 @@ public class StepDefinitions {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        WebElement courseElement = driver.findElement(By.xpath("//div[1]/div[1]/h3[1]/a[1]"));
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", courseElement);
         driver.findElement(By.xpath("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a")).click();
-
     }
-
+    // Enters a specific course to work on
     @And("Student has a course")
     @And("Teacher has a course")
     public void userHasACourse(){
@@ -76,7 +74,7 @@ public class StepDefinitions {
         }
         driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div[2]/div/div/div[1]/div/div/div/div/div[1]/div/div/a/span[3]/span[2]")).click();
     }
-
+    // Entering a specific forum inside the course
     @And("Course has a forum discussion")
     public void CourseHasAForum(){
         try {
@@ -87,7 +85,7 @@ public class StepDefinitions {
         driver.findElement(By.xpath("/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[3]/div/div[2]/ul/li/div/div[2]/div[2]/div/div/a")).click();
     }
 
-    // $$*TODO* explain what this step does$$
+    // subscribe the student to the discussion
     @When("Student subscribes to a forum discussion")
     public void studentSubscribesToADiscussion() {
         try {
@@ -98,7 +96,7 @@ public class StepDefinitions {
         driver.findElement(By.xpath("/html/body/div[3]/div[4]/div/div[2]/div/section/div[2]/div[2]/div[3]/div/table/tbody/tr/td[5]/div")).click();
     }
 
-    // $$*TODO* explain what this step does$$
+    // end of student scenario, make sure the student did subscribe to the discussion
     @Then("The student successfully subscribed to the discussion")
     public void successfulSubscribe() {
         driver.findElement(By.xpath("/html/body/div[3]/div[4]/div/div[2]/div/section/div[2]/div[2]/div[3]/div/table/tbody/tr/td[5]/div"));
@@ -108,7 +106,7 @@ public class StepDefinitions {
             e.printStackTrace();
         }
     }
-    // $$*TODO* explain what this step does$$
+    // teacher entering specific discussion inside the forum
     @And("Teacher in specific forum discussion page")
     public void TeacherEnteringDiscussion() {
         try {
@@ -119,7 +117,7 @@ public class StepDefinitions {
         driver.findElement(By.xpath("/html/body/div[3]/div[4]/div/div[3]/div/section/div[2]/div[2]/div[3]/div/table/tbody/tr/th/div/div[1]/a")).click();
     }
 
-    // $$*TODO* explain what this step does$$
+    // teacher deletes the discussion
     @When("Teacher deletes a forum discussion")
     public void TeacherDeletesForumDiscussion() {
         try {
@@ -136,7 +134,7 @@ public class StepDefinitions {
         driver.findElement(By.xpath("/html/body/div[2]/div[4]/div/div[3]/div/section/div[2]/div/div/div[3]/div/div[2]/form/button")).click();
     }
 
-    // $$*TODO* explain what this step does$$
+    // end of teacher scenario, makes sure the discussion was successfully deleted
     @Then("The Teacher successfully deletes the discussion")
     public void TeacherScenarioPasses() throws Exception {
 
