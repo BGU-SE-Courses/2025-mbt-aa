@@ -2,6 +2,7 @@
 /* @provengo summon ctrl */
 
 
+
 /**
  * BThread: Student Subscribes to a Forum Discussion
  * 
@@ -27,19 +28,16 @@ bthread("teacherDeletesTheForumDiscussion", function(){
   session2.start(URL)
   sync({request: Event("End-findLoginPageAndLogin")}, findLoginPageAndLogin(session2, teacherUsername, teacherPassword))
   sync({request: Event("End-goToTestCourse")}, goToTestCourse(session2))
-  sync({request: Event("End-enterToForumDiscussion")}, enterToForumDiscussion(session2))
-  sync({request: Event("End-deleteDiscussion")}, deleteDiscussion(session2))
+  sync({request: Event("End-enterToForumDiscussionAndDeleteDiscussion")}, enterToForumDiscussionAndDeleteDiscussion(session2))
 });
-
 
 /**
  * BThread: Teacher Deletes the Discussion While Student Is Waiting
  * 
  * Ensures that the teacher deletes the discussion before the student can subscribe,
  * simulating a race condition or concurrent interaction.
- */
-bthread("teacherDeletesTheDiscussionWhileStudentIsWaiting", function(){
-  sync({waitFor:Event("End-deleteDiscussion")})
+ */bthread("teacherDeletesTheDiscussionWhileStudentIsWaiting", function(){
+  sync({waitFor:Event("End-enterToForumDiscussionAndDeleteDiscussion")})
   sync({block: Event("Start-enterToForumDiscussionAndSubscribe")})
 });
 
