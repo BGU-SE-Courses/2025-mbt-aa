@@ -1,19 +1,22 @@
 // @provengo summon ctrl
 
+
+// DOMAIN SPECIFIC
+
 /**
- * List of events "of interest" that we want test suites to cover.
+ * List of events "of interest" that we want test suites to cover for domain specific tests.
  */
+
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+    Event('End-enterToForumDiscussionAndDeleteDiscussion'),
+    Event('Start-enterToForumDiscussionAndSubscribe')
 ];
 
-const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
-}
+// const makeGoals = function(){
+//     return [ [ any(/Howdy/), any(/Venus/) ],
+//              [ any(/Mars/) ],
+//              [ Ctrl.markEvent("Classic!") ] ];
+// }
 
 /**
  * Ranks test suites by how many events from the GOALS array were met.
