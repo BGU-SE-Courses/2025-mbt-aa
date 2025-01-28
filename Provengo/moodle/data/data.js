@@ -4,7 +4,7 @@
  *  This is a good place to put common test data, project-wide constants, etc.
  */
 
-const URL = "http://localhost:8888/moodle405/";
+const URL = "http://localhost/";
 const studentUsername = 'student'
 const studentPassword = 'Student123!'
 const teacherUsername = 'teacher'
